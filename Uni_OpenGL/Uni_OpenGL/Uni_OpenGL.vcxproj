@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)libs</AdditionalLibraryDirectories>
@@ -98,6 +99,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)includes</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -121,7 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ScreenManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LogManager.h" />
+    <ClInclude Include="ScreenManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

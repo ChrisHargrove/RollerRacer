@@ -12,3 +12,5 @@
 /.vs/ProjectSettings.json
 /.vs/slnx.sqlite-journal
 /.vs/VSWorkspaceState.json
+/Uni_OpenGL/.vs/Uni_OpenGL/v15/ipch/AutoPCH
+*.log
