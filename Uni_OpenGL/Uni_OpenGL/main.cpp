@@ -7,21 +7,26 @@
 #include <Windows.h>
 
 #include "ScreenManager.h"
+#include "InputManager.h"
 #include "LogManager.h"
 
 int main(int argc, char** argv) {
 
+	bool running = true;
+
 	ScreenManager::Instance()->SetOpenGLVersion();
-	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768, false)) {
+	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768)) {
 		LogManager::Instance()->LogError("Screen Manager Failed To Initialize!");
 		return 0;
 	}
 	
 	float time = 0;
 
-	while (1) {
+	while (running) {
 
 		ScreenManager::Instance()->Clear();
+
+		InputManager::Instance()->Update();
 
 		time+=0.01f;
 		float offset = sin(time);
@@ -42,6 +47,10 @@ int main(int argc, char** argv) {
 		glEnd();
 
 		ScreenManager::Instance()->SwapBuffers();
+
+		if (InputManager::Instance()->IsKeyPressed(SDLK_ESCAPE) || InputManager::Instance()->CheckForWinEvent(SDL_QUIT)) {
+			running = false;
+		}
 
 	}
 	
