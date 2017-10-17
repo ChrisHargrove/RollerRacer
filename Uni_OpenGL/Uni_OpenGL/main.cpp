@@ -10,17 +10,44 @@
 #include "InputManager.h"
 #include "LogManager.h"
 
+#include "Shaders\Shader.h"
+
 int main(int argc, char** argv) {
 
 	bool running = true;
+
+	
 
 	ScreenManager::Instance()->SetOpenGLVersion();
 	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768)) {
 		LogManager::Instance()->LogError("Screen Manager Failed To Initialize!");
 		return 0;
 	}
+
+	Shader myShader("Shaders/shader");
 	
-	float time = 0;
+	float vertices[] = {
+		// positions         // colors
+		0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bottom right
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // bottom left
+		0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // top 
+	};
+
+	unsigned int VBO, VAO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	// color attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 	while (running) {
 
@@ -28,23 +55,11 @@ int main(int argc, char** argv) {
 
 		InputManager::Instance()->Update();
 
-		time+=0.01f;
-		float offset = sin(time);
+		myShader.Use();
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
-		//render quad
-		glBegin(GL_QUADS);
-			glColor3f(1.0f * offset, 0.0f, 0.0f);
-			glVertex3f(-0.5f + offset, 0.5f, 0.0f);
-
-			glColor3f(0.0f, 1.0f * offset, 0.0f);
-			glVertex3f(0.5f + offset, 0.5f, 0.0f);
-
-			glColor3f(0.0f, 0.0f, 1.0f * offset);
-			glVertex3f(0.5f + offset, -0.5f, 0.0f);
-
-			glColor3f(1.0f * offset, 0.0f, 1.0f * offset);
-			glVertex3f(-0.5f + offset, -0.5f, 0.0f);
-		glEnd();
+		
 
 		ScreenManager::Instance()->SwapBuffers();
 
@@ -53,6 +68,9 @@ int main(int argc, char** argv) {
 		}
 
 	}
+
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
 	
 	ScreenManager::Instance()->Close();
 	return 0;
