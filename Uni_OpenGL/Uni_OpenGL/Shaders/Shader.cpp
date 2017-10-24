@@ -1,8 +1,13 @@
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
 #include "Shader.h"
+#include <fstream>
+#include <sstream>
+#include <GLEW\glew.h>
 #include "..\LogManager.h"
 
-#include <GLEW\glew.h>
-
+////////////////////////////////////////////////////////////
 Shader::Shader(const std::string FilePath)
 {
 	std::string vertexCode;
@@ -28,11 +33,9 @@ Shader::Shader(const std::string FilePath)
 		fragmentCode = fShaderStream.str();
 	}
 	catch (std::ifstream::failure e) {
-		
 		LogManager::Instance()->LogError("Shader::File Not Successfully Read!");
 	}
 	LogManager::Instance()->LogDebug("Both Shader Files Opened Successfully.");
-
 
 	const char* vShaderCode = vertexCode.c_str();
 	const char* fShaderCode = fragmentCode.c_str();
@@ -73,26 +76,37 @@ Shader::Shader(const std::string FilePath)
 
 }
 
+////////////////////////////////////////////////////////////
+Shader::~Shader()
+{
+	glDeleteProgram(ID);
+}
+
+////////////////////////////////////////////////////////////
 void Shader::Use()
 {
 	glUseProgram(ID);
 }
 
+////////////////////////////////////////////////////////////
 void Shader::SetBool(const std::string & Name, bool Value) const
 {
 	glUniform1i(glGetUniformLocation(ID, Name.c_str()), (int)Value);
 }
 
+////////////////////////////////////////////////////////////
 void Shader::SetInt(const std::string & Name, int Value) const
 {
 	glUniform1i(glGetUniformLocation(ID, Name.c_str()), Value);
 }
 
+////////////////////////////////////////////////////////////
 void Shader::SetFloat(const std::string & Name, float Value) const
 {
 	glUniform1f(glGetUniformLocation(ID, Name.c_str()), Value);
 }
 
+////////////////////////////////////////////////////////////
 bool Shader::CheckCompileErrors(unsigned int Shader, std::string Type)
 {
 	int success;

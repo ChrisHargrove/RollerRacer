@@ -3,7 +3,6 @@
 #include <SDL\SDL.h>
 #include <GLEW\glew.h>
 
-#include <iostream>
 #include <Windows.h>
 
 #include "ScreenManager.h"
@@ -15,8 +14,6 @@
 int main(int argc, char** argv) {
 
 	bool running = true;
-
-	
 
 	ScreenManager::Instance()->SetOpenGLVersion();
 	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768)) {
@@ -52,14 +49,11 @@ int main(int argc, char** argv) {
 	while (running) {
 
 		ScreenManager::Instance()->Clear();
-
 		InputManager::Instance()->Update();
 
 		myShader.Use();
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-
-		
+		glDrawArrays(GL_TRIANGLES, 0, 3);		
 
 		ScreenManager::Instance()->SwapBuffers();
 
@@ -73,5 +67,6 @@ int main(int argc, char** argv) {
 	glDeleteBuffers(1, &VBO);
 	
 	ScreenManager::Instance()->Close();
+
 	return 0;
 }
