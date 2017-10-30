@@ -149,6 +149,15 @@ double InputManager::GetYScroll()
 }
 
 ////////////////////////////////////////////////////////////
+bool InputManager::HasQuit()
+{
+    if (IsKeyPressed(SDLK_ESCAPE) || CheckForWinEvent(SDL_QUIT)) {
+        return true;
+    }
+    return false;
+}
+
+////////////////////////////////////////////////////////////
 bool InputManager::CheckForWinEvent(int WindowEvent)
 {
 	auto search = WindowEvents.find(WindowEvent);

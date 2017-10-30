@@ -13,15 +13,13 @@
 
 int main(int argc, char** argv) {
 
-	bool running = true;
-
 	ScreenManager::Instance()->SetOpenGLVersion();
 	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768)) {
 		LogManager::Instance()->LogError("Screen Manager Failed To Initialize!");
 		return 0;
 	}
 
-	Shader myShader("Shaders/shader");
+	Shader myShader("shader");
 	
 	float vertices[] = {
 		// positions         // colors
@@ -46,7 +44,7 @@ int main(int argc, char** argv) {
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	while (running) {
+	while (!InputManager::Instance()->HasQuit()) {
 
 		ScreenManager::Instance()->Clear();
 		InputManager::Instance()->Update();
@@ -56,10 +54,6 @@ int main(int argc, char** argv) {
 		glDrawArrays(GL_TRIANGLES, 0, 3);		
 
 		ScreenManager::Instance()->SwapBuffers();
-
-		if (InputManager::Instance()->IsKeyPressed(SDLK_ESCAPE) || InputManager::Instance()->CheckForWinEvent(SDL_QUIT)) {
-			running = false;
-		}
 
 	}
 

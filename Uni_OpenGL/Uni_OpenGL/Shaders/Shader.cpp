@@ -8,7 +8,7 @@
 #include "..\LogManager.h"
 
 ////////////////////////////////////////////////////////////
-Shader::Shader(const std::string FilePath)
+Shader::Shader(const std::string FileName)
 {
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -19,8 +19,8 @@ Shader::Shader(const std::string FilePath)
 	fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	try	{
 		// open files
-		vShaderFile.open(FilePath + ".vert");
-		fShaderFile.open(FilePath + ".frag");
+		vShaderFile.open("Shaders/" + FileName + ".vert");
+		fShaderFile.open("Shaders/" + FileName + ".frag");
 		std::stringstream vShaderStream, fShaderStream;
 		// read file's buffer contents into streams
 		vShaderStream << vShaderFile.rdbuf();
