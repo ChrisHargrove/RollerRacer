@@ -186,6 +186,16 @@ public:
 	WindowEvent GetWinEvent(int windowEvent);
 
 	////////////////////////////////////////////////////////////
+	/// Will Confine mouse pointer to the window, and hide cursor.
+	////////////////////////////////////////////////////////////
+	void GrabMouse();
+
+	////////////////////////////////////////////////////////////
+	/// Will Release mouse grab and will reshow cursor.
+	////////////////////////////////////////////////////////////
+	void ReleaseMouse();
+
+	////////////////////////////////////////////////////////////
 	/// Provides access to the only instance of the screen
 	/// manager.
 	////////////////////////////////////////////////////////////
@@ -240,6 +250,8 @@ private:
 	// Member Data
 	////////////////////////////////////////////////////////////
 	static InputManager _Instance; // Static Instance of InputManager
+
+	bool _CapturedMouse; //Flag to see if Input has captured mouse.
 
 	std::map<int, KeyEvent> KeyboardEvents; // Container of Keyboard Events, accessed with keycodes.
 	std::map<int, bool> KeyPressed;			// Container of is key pressed booleans, accessed with keycodes.

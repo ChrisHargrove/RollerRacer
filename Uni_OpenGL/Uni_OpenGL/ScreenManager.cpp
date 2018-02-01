@@ -3,6 +3,7 @@
 ////////////////////////////////////////////////////////////
 #include "ScreenManager.h"
 #include "LogManager.h"
+#include <GLM\gtc\matrix_transform.hpp>
 
 ////////////////////////////////////////////////////////////
 // Static Variables
@@ -20,6 +21,9 @@ ScreenManager::~ScreenManager(){}
 ////////////////////////////////////////////////////////////
 bool ScreenManager::Initialize(char* Title, int Width, int Height, bool CoreMode)
 {
+	_Width = Width;
+	_Height = Height;
+
 	LogManager::Instance()->LogDebug("Initializing ScreenManager...");
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
 		std::string temp = SDL_GetError();
@@ -57,6 +61,7 @@ bool ScreenManager::Initialize(char* Title, int Width, int Height, bool CoreMode
 
 	SetClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+
 	//Create a Window
 	_Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, SDL_WINDOW_OPENGL);
 	if (_Window == 0) {
@@ -74,6 +79,8 @@ bool ScreenManager::Initialize(char* Title, int Width, int Height, bool CoreMode
 	}
 	
 	EnableVSync(); //Note: Has to be called after Context has been created!
+	glEnable(GL_DEPTH_TEST); //Allows Z-buffer usage.
+	//glEnable(GL_CULL_FACE); //Starts backface culling.
 
 	GLenum glew_error = glewInit();
 	if (GLEW_OK != glew_error) {
@@ -150,4 +157,41 @@ SDL_Window * ScreenManager::GetWindow()
 SDL_GLContext * ScreenManager::GetContext()
 {
 	return &_Context;
+}
+
+////////////////////////////////////////////////////////////
+void ScreenManager::GrabMouse()
+{
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	LogManager::Instance()->LogDebug("Grabbing Mouse and hiding Cursor...");
+}
+
+////////////////////////////////////////////////////////////
+void ScreenManager::ReleaseMouse()
+{
+	SDL_SetRelativeMouseMode(SDL_FALSE);
+	LogManager::Instance()->LogDebug("Releasing Mouse and showing Cursor...");
+}
+
+////////////////////////////////////////////////////////////
+void ScreenManager::SetProjection(float FOV, float Zoom, float ZNear, float ZFar)
+{
+	_Projection = glm::perspective(glm::radians(FOV - Zoom), _Width/_Height, ZNear, ZFar);
+}
+
+////////////////////////////////////////////////////////////
+void ScreenManager::SetOrthographic(float ZNear,float ZFar)
+{
+	_Projection = glm::ortho(0.0f, _Width, 0.0f, _Height, ZNear, ZFar);
+}
+
+////////////////////////////////////////////////////////////
+glm::mat4 & ScreenManager::GetProjection()
+{
+	return _Projection;
+}
+
+void ScreenManager::CreateViewport(int X, int Y, int Width, int Height)
+{
+	glViewport(X, Y, Width, Height);
 }

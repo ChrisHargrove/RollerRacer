@@ -2,6 +2,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "InputManager.h"
+#include "ScreenManager.h"
 #include "LogManager.h"
 #include <SDL\SDL.h>
 
@@ -11,7 +12,7 @@
 InputManager InputManager::_Instance;
 
 ////////////////////////////////////////////////////////////
-InputManager::InputManager(){}
+InputManager::InputManager() : _CapturedMouse(true){}
 
 ////////////////////////////////////////////////////////////
 InputManager::~InputManager(){}
@@ -173,6 +174,24 @@ WindowEvent InputManager::GetWinEvent(int WindowEvent)
 	auto search = WindowEvents.find(WindowEvent);
 	if (search != WindowEvents.end()) {
 		return WindowEvents.at(WindowEvent);
+	}
+}
+
+////////////////////////////////////////////////////////////
+void InputManager::GrabMouse()
+{
+	if (!_CapturedMouse) {
+		ScreenManager::Instance()->GrabMouse();
+		_CapturedMouse = true;
+	}
+}
+
+////////////////////////////////////////////////////////////
+void InputManager::ReleaseMouse()
+{
+	if (_CapturedMouse) {
+		ScreenManager::Instance()->ReleaseMouse();
+		_CapturedMouse = false;
 	}
 }
 

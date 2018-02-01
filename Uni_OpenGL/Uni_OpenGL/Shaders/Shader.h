@@ -12,6 +12,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
+#include <GLM\glm.hpp>
 
 ////////////////////////////////////////////////////////////
 /// Engine Shader
@@ -24,6 +25,8 @@ class Shader
 public:
 	////////////////////////////////////////////////////////////
 	/// Default Constructor.
+	/// --FileName-- Give name of file to open without file extension
+	/// or path.
 	////////////////////////////////////////////////////////////
 	Shader(const std::string FileName);
 
@@ -37,6 +40,21 @@ public:
 	/// Rendering on the GPU.
 	////////////////////////////////////////////////////////////
 	void Use();
+
+	////////////////////////////////////////////////////////////
+	/// Utility Function to update all shader matrices at once.
+	/// --Model-- The model matrix to pass to shader.
+	/// --View-- The view matrix to pass to shader.
+	////////////////////////////////////////////////////////////
+	void UpdateMatrices(const glm::mat4 &Model, const glm::mat4 &View);
+
+	////////////////////////////////////////////////////////////
+	/// Utility Function to update all shader matrices at once.
+	/// --Model-- The model matrix to pass to shader.
+	/// --View-- The view matrix to pass to shader.
+	/// --Projection -- The projection matrix to pass to shader.
+	////////////////////////////////////////////////////////////
+	void UpdateMatrices(const glm::mat4 &Model, const glm::mat4 &View, const glm::mat4 &Projection);
 
 	////////////////////////////////////////////////////////////
 	/// Sets a boolean variable inside the Shader program to a 
@@ -61,6 +79,89 @@ public:
 	/// --Value-- The value to set the variable to.
 	////////////////////////////////////////////////////////////
 	void SetFloat(const std::string &Name, float Value) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 2 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Value-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec2(const std::string &Name, const glm::vec2 &Value) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 2 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --x-- The value to set the variable to.
+	/// --y-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec2(const std::string &Name, float x, float y) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 3 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Value-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec3(const std::string &Name, const glm::vec3 &Value) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 3 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --x-- The value to set the variable to.
+	/// --y-- The value to set the variable to.
+	/// --z-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec3(const std::string &Name, float x, float y, float z) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 4 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Value-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec4(const std::string &Name, const glm::vec4 &Value) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a vector 4 variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --x-- The value to set the variable to.
+	/// --y-- The value to set the variable to.
+	/// --z-- The value to set the variable to.
+	/// --w-- The value to set the variable to.
+	////////////////////////////////////////////////////////////
+	void SetVec4(const std::string &Name, float x, float y, float z, float w);
+
+	////////////////////////////////////////////////////////////
+	/// Sets a 2x2 matrix variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Mat-- The matrix values to set the variables to.
+	////////////////////////////////////////////////////////////
+	void SetMat2(const std::string &Name, const glm::mat2 &Mat) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a 3x3 matrix variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Mat-- The matrix values to set the variables to.
+	////////////////////////////////////////////////////////////
+	void SetMat3(const std::string &Name, const glm::mat3 &Mat) const;
+
+	////////////////////////////////////////////////////////////
+	/// Sets a 4x4 matrix variable inside the Shader program to a 
+	/// specified value.
+	/// --Name-- The name of the variable inside the Shader Program
+	/// --Mat-- The matrix values to set the variables to.
+	////////////////////////////////////////////////////////////
+	void SetMat4(const std::string &Name, const glm::mat4 &Mat) const;
+
+	////////////////////////////////////////////////////////////
+	/// Returns Shader Program ID.
+	////////////////////////////////////////////////////////////
+	unsigned int GetID() const;
 
 private:
 	////////////////////////////////////////////////////////////

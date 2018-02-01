@@ -13,6 +13,7 @@
 ////////////////////////////////////////////////////////////
 #include <SDL\SDL.h>
 #include <GLEW\glew.h>
+#include <GLM\glm.hpp>
 
 ////////////////////////////////////////////////////////////
 /// Engine Screen Manager
@@ -94,6 +95,42 @@ public:
 	SDL_GLContext* GetContext();
 
 	////////////////////////////////////////////////////////////
+	/// Will Confine mouse pointer to the window, and hide cursor.
+	////////////////////////////////////////////////////////////
+	void GrabMouse();
+
+	////////////////////////////////////////////////////////////
+	/// Will Release mouse grab and will reshow cursor.
+	////////////////////////////////////////////////////////////
+	void ReleaseMouse();
+
+	////////////////////////////////////////////////////////////
+	/// Sets up the screen projection matrix.
+	/// --FOV-- The Field Of View in degrees.
+	/// --Zoom-- How far the camera is zoomed.
+	/// --ZNear-- How close to the screen before the object gets clipped.
+	/// --ZFar-- How far from the screen before the object gets clipped.
+	////////////////////////////////////////////////////////////
+	void SetProjection(float FOV, float Zoom, float ZNear = 0.1f, float ZFar = 100.0f);
+
+	////////////////////////////////////////////////////////////
+	/// Sets up the screen projection matrix for orthographic drawing.
+	/// --ZNear-- How close to the screen before the object gets clipped.
+	/// --ZFar-- How far from the screen before the object gets clipped.
+	////////////////////////////////////////////////////////////
+	void SetOrthographic(float ZNear = 0.0f,float ZFar = 0.0f);
+
+	////////////////////////////////////////////////////////////
+	/// Returns the Projection matrix by reference.
+	////////////////////////////////////////////////////////////
+	glm::mat4& GetProjection();
+
+	////////////////////////////////////////////////////////////
+	/// Creates a Viewport to render to.
+	////////////////////////////////////////////////////////////
+	void CreateViewport(int X, int Y, int Width, int Height);
+
+	////////////////////////////////////////////////////////////
 	/// Provides access to the only instance of the screen
 	/// manager.
 	////////////////////////////////////////////////////////////
@@ -113,6 +150,11 @@ private:
 	bool _VersionSet;				// Flag to see if a OpenGL version has been set.
 	int _GL_VERSION_MAJOR;			// The Major version of OpenGL to use.
 	int _GL_VERSION_MINOR;			// The Minor version of OpenGL to use.
+
+	float _Width;					// The screen height
+	float _Height;					// The screen width.
+
+	glm::mat4 _Projection;			// The projection matrix.
 
 };
 
