@@ -65,7 +65,7 @@ vec3 CalculateSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir
 void main()
 {
     //allows for correct lighting on rotated objects
-    vec3 norm = normalize(Normal * transpose(inverse(mat3(model))));
+    vec3 norm = normalize(Normal);// * transpose(inverse(mat3(model))));
     vec3 viewDir = normalize(viewPos - FragPos);
 
     //------------------------------------------------------

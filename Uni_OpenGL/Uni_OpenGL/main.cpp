@@ -34,51 +34,6 @@ int main(int argc, char** argv) {
 	ShaderManager::Instance()->AddShader("basic", "basic");
 	ShaderManager::Instance()->AddShader("phong", "phong");
     ShaderManager::Instance()->AddShader("betterLight", "betterLight");
-	
-    float vertices[] = {
-        // positions          // normals           // texture coords
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
-        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
-        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
-    };
 
     // positions all containers
     glm::vec3 cubePositions[] = {
@@ -102,33 +57,22 @@ int main(int argc, char** argv) {
     };
 
 	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
-
-	Buffer VertexArray, VertexBuffer;
-
-	VertexArray.Create(VAO);
-
-	VertexBuffer.Create(VBO);
-
-	VertexArray.Bind();
-	VertexBuffer.Fill(sizeof(vertices),vertices, STATIC);
-	VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader("betterLight")->GetID(), "aPos", 3, VT_FLOAT, 8 * sizeof(float));
-	VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader("betterLight")->GetID(), "aNormal", 3, VT_FLOAT, 8 * sizeof(float), 3 * sizeof(float));
-    VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader("betterLight")->GetID(), "aTexCoords", 3, VT_FLOAT, 8 * sizeof(float), 6 * sizeof(float));
 	
 	Grid* grid = new Grid(7, "basic");
 	Axis* axis = new Axis(7, "basic");
-	Cuboid* lamp = new Cuboid(0.5, 0.5, 0.5, "phong");
+	Cuboid* lamp = new Cuboid(0.2, 0.2, 0.2, "betterLight");
+	Cuboid* crate = new Cuboid(1, 1, 1, "betterLight");
 	
 	Camera* camera = new Camera(0, 1, 4, -90);
 
-    Texture* container = new Texture("container.png");
-    Texture* containerSpec = new Texture("container_specular.png");
+    Texture* container = new Texture("container.png", "boxDiff");
+    Texture* containerSpec = new Texture("container_specular.png", "boxSpec");
 	
     ShaderManager::Instance()->GetShader("betterLight")->SetInt("material.diffuse", 0);
     ShaderManager::Instance()->GetShader("betterLight")->SetInt("material.specular", 1);
 
 	while (!InputManager::Instance()->HasQuit()) {
-		ScreenManager::Instance()->SetProjection(90, camera->GetZoom());
+		ScreenManager::Instance()->SetProjection(90, camera->GetZoom(), 0.1, 1000.0f);
 
 		ScreenManager::Instance()->Clear();
 		InputManager::Instance()->Update();
@@ -175,7 +119,6 @@ int main(int argc, char** argv) {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, containerSpec->GetID());
 
-		VertexArray.Bind();
         for (unsigned int i = 0; i < 10; i++)
         {
             // calculate the model matrix for each object and pass it to shader before drawing
@@ -185,18 +128,20 @@ int main(int argc, char** argv) {
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             ShaderManager::Instance()->GetShader("betterLight")->UpdateMatrices(model, camera->GetViewMatrix(), ScreenManager::Instance()->GetProjection());
 
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+			crate->Draw();
         }
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, 0);
 
         for (int i = 0; i < 4; i++) {
             model = glm::mat4();
             model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f));
-            ShaderManager::Instance()->GetShader("phong")->UpdateMatrices(model, camera->GetViewMatrix(), ScreenManager::Instance()->GetProjection());
+            ShaderManager::Instance()->GetShader("betterLight")->UpdateMatrices(model, camera->GetViewMatrix(), ScreenManager::Instance()->GetProjection());
             lamp->Draw();
         }
-		
-
 		//------------BASIC SHADER----------
 		model = glm::mat4();
 		ShaderManager::Instance()->GetShader("basic")->UpdateMatrices(model, camera->GetViewMatrix(), ScreenManager::Instance()->GetProjection());
@@ -206,14 +151,12 @@ int main(int argc, char** argv) {
 		ScreenManager::Instance()->SwapBuffers();
 	}
 
-	VertexArray.Destroy();
-	VertexBuffer.Destroy();
-
 	delete camera;
 	delete axis;
 	delete lamp;
 	delete grid;
     delete container;
+	delete crate;
 
 	ScreenManager::Instance()->Close();
 

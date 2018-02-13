@@ -132,6 +132,7 @@
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shaders\Shader.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,10 +148,10 @@
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Shaders\Shader.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="Shaders\betterLight.frag" />
     <None Include="Shaders\betterLight.vert" />
     <None Include="Shaders\phong.frag" />
