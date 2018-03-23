@@ -131,7 +131,7 @@ void Camera::ProcessMouseEvents()
 	if (SDL_GetRelativeMouseMode() == SDL_TRUE) {
 		if (InputManager::Instance()->HasMouseMoved()) {
 			_Yaw = glm::mod((float)(_Yaw + InputManager::Instance()->GetMouseMove().xRel), 360.0f);
-			_Pitch -= InputManager::Instance()->GetMouseMove().yRel;
+			_Pitch -= (float)InputManager::Instance()->GetMouseMove().yRel;
 		}
 		if (_ConstrainPitch)
 		{
@@ -142,7 +142,7 @@ void Camera::ProcessMouseEvents()
 		}
 		if (InputManager::Instance()->HasScrolled()) {
 			if (_Zoom >= 1.0f && _Zoom <= 45.0f)
-				_Zoom += InputManager::Instance()->GetYScroll();;
+				_Zoom += (float)InputManager::Instance()->GetYScroll();;
 			if (_Zoom <= 1.0f)
 				_Zoom = 1.0f;
 			if (_Zoom >= 45.0f)

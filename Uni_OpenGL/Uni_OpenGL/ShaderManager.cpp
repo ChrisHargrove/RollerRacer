@@ -69,4 +69,5 @@ Shader* ShaderManager::GetShader(std::string Key)
 	else {
 		LogManager::Instance()->LogWarning("This Shader does not exist!...");
 	}
+    return nullptr;
 }

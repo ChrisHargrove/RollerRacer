@@ -93,6 +93,7 @@ bool Texture::Load(std::string FileName, std::string textureName)
 		LogManager::Instance()->LogError("Texture Name already taken, " + FileName + " Not Loaded!");
 		return false;
 	}
+    return false;
 }
 
 bool Texture::Unload(std::string textureName)

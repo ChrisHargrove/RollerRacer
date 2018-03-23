@@ -1,41 +1,32 @@
-#include <iostream>
-
-#include <SDL\SDL.h>
-#include <GLEW\glew.h>
-#include <GLM\glm.hpp>
-#include <GLM\gtc\matrix_transform.hpp>
-
-#include <Windows.h>
-
-#include "ScreenManager.h"
+#include "Timer.h"
+#include "Engine.h"
 #include "InputManager.h"
-#include "LogManager.h"
-#include "ShaderManager.h"
-
-#include "Camera.h"
-
-#include "Grid.h"
-#include "Axis.h"
-
-#include "Skybox.h"
-#include "Model.h"
-#include "Texture.h"
-
-#include <SDL\SDL_image.h>
 
 int main(int argc, char** argv) {
 
-	ScreenManager::Instance()->SetOpenGLVersion();
-	if (!ScreenManager::Instance()->Initialize("Managed & Logged Window", 1024, 768)) {
-		LogManager::Instance()->LogError("Screen Manager Failed To Initialize!");
-		return 0;
-	}
+    Timer* _Timer = new Timer();
+    Engine* _Engine = new Engine();
 
-	ShaderManager::Instance()->AddShader("basic", "basic");
-    ShaderManager::Instance()->AddShader("skybox", "skybox");
-    ShaderManager::Instance()->AddShader("betterLight", "betterLight");
+    if (!_Engine->Initialize(1024, 768, "Finite State Machine!!!")) {
+        return 0;
+    }
+
+    _Timer->Start();
+    while (!InputManager::Instance()->HasQuit()) {
+        _Engine->Input();
+        _Engine->Update(_Timer->GetDelta());
+        _Engine->Render();
+    }
+
+    if (!_Engine->Shutdown()) {
+        return 0;
+    }
 	
-	Grid* grid = new Grid(7, "basic");
+
+    delete _Timer;
+	return 1;
+}
+	/*Grid* grid = new Grid(7, "basic");
 	Axis* axis = new Axis(7, "basic");
 
     SkyBox* skybox = new SkyBox("skybox", "Assets/Textures/hw_sahara/D", "Dskybox");
@@ -43,13 +34,7 @@ int main(int argc, char** argv) {
 	
 	Camera* camera = new Camera(0, 1, 4, -90);
 
-	while (!InputManager::Instance()->HasQuit()) {
-
 		ScreenManager::Instance()->Set3D(90, camera->GetZoom(), 0.1, 1000.0f);
-
-		ScreenManager::Instance()->Clear();
-		InputManager::Instance()->Update();
-
 		camera->Update();
 
 		//------------BASIC SHADER----------
@@ -68,7 +53,7 @@ int main(int argc, char** argv) {
 		//DRAW ALL 2D stuff!
 		ScreenManager::Instance()->Set2D();
 
-		ScreenManager::Instance()->SwapBuffers();
+		
 	}
 
 	delete camera;
@@ -76,7 +61,4 @@ int main(int argc, char** argv) {
 	delete grid;
     delete skybox;
 
-	ScreenManager::Instance()->Close();
-
-	return 0;
-}
+	*/

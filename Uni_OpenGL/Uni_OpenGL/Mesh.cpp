@@ -50,7 +50,7 @@ void Mesh::Draw()
         else if (name == "texture_height")
             number = std::to_string(heightNr++);
 
-        ShaderManager::Instance()->GetShader(_Shader)->SetFloat(("material." + name + number).c_str(), i);
+        ShaderManager::Instance()->GetShader(_Shader)->SetFloat(("material." + name + number).c_str(), (float)i);
         glBindTexture(GL_TEXTURE_2D, _Textures[i]._ID);
     }
 

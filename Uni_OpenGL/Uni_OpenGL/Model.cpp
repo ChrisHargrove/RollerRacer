@@ -16,7 +16,7 @@ Model::~Model()
 
 void Model::Draw()
 {
-    for (int i = 0; i < _Meshes.size(); i++) {
+    for (int i = 0; i < (int)_Meshes.size(); i++) {
         _Meshes[i].Draw();
     }
 }
@@ -37,11 +37,11 @@ void Model::LoadModel(std::string FileName)
 
 void Model::ProcessNode(aiNode * node, const aiScene * scene)
 {
-    for (int i = 0; i < node->mNumMeshes; i++) {
+    for (int i = 0; i < (int)node->mNumMeshes; i++) {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
         _Meshes.push_back(ProcessMesh(mesh, scene));
     }
-    for (int i = 0; i < node->mNumChildren; i++) {
+    for (int i = 0; i < (int)node->mNumChildren; i++) {
         ProcessNode(node->mChildren[i], scene);
     }
 }
@@ -52,7 +52,7 @@ Mesh Model::ProcessMesh(aiMesh * mesh, const aiScene * scene)
     std::vector<unsigned int> indices;
     std::vector<MeshTexture> textures;
 
-    for (int i = 0; i < mesh->mNumVertices; i++) {
+    for (int i = 0; i < (int)mesh->mNumVertices; i++) {
         Vertex vertex;
         glm::vec3 vector;
         vector.x = mesh->mVertices[i].x;

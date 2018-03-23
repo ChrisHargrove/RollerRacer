@@ -19,10 +19,10 @@ ScreenManager::ScreenManager() :
 ScreenManager::~ScreenManager(){}
 
 ////////////////////////////////////////////////////////////
-bool ScreenManager::Initialize(char* Title, int Width, int Height, bool CoreMode)
+bool ScreenManager::Initialize(const char* Title, int Width, int Height, bool CoreMode)
 {
-	_Width = Width;
-	_Height = Height;
+	_Width = (float)Width;
+	_Height = (float)Height;
 
 	LogManager::Instance()->LogDebug("Initializing ScreenManager...");
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {

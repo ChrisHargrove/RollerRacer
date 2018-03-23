@@ -52,7 +52,7 @@ bool CubeMap::Load(std::string FileName, std::string cubeMapName)
         glBindTexture(GL_TEXTURE_CUBE_MAP, _ID);
 
         SDL_Surface* image;
-        for (int i = 0; i < _FaceNames.size(); i++) {
+        for (int i = 0; i < (int)_FaceNames.size(); i++) {
             if (image = IMG_Load((FileName + "_" + _FaceNames[i] + ".jpg").c_str())) {
                 //check to see if image loaded
                 if (!image) {

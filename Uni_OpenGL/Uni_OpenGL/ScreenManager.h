@@ -42,7 +42,7 @@ public:
 	/// --Height-- The Window Height  --Defualt = 600.
 	/// --CoreMode-- If OpenGL should run in Core mode or not. --Default = true.
 	////////////////////////////////////////////////////////////
-	bool Initialize(char* Title, int Width = 800, int Height = 600, bool CoreMode = true);
+	bool Initialize(const char* Title, int Width = 800, int Height = 600, bool CoreMode = true);
 
 	////////////////////////////////////////////////////////////
 	/// Closes the window and free's all associated memory.
