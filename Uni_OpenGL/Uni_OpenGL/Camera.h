@@ -11,6 +11,7 @@ public:
 	~Camera();
 
 	glm::mat4 GetViewMatrix() const;
+	glm::mat4 GetOrthoView() const;
 	glm::vec3 GetPosition();
     glm::vec3 GetDirection();
 	void Update();

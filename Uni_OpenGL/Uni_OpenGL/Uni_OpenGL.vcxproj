@@ -125,10 +125,13 @@
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shaders\Shader.cpp" />
@@ -139,16 +142,20 @@
     <ClInclude Include="Axis.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LogManager.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="PrimitiveShape.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Shaders\Shader.h" />
     <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +165,8 @@
     <None Include="Shaders\phong.vert" />
     <None Include="Shaders\basic.frag" />
     <None Include="Shaders\basic.vert" />
+    <None Include="Shaders\skybox.frag" />
+    <None Include="Shaders\skybox.vert" />
     <None Include="Shaders\texture_phong.frag" />
     <None Include="Shaders\texture_phong.vert" />
   </ItemGroup>

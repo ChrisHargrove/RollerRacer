@@ -51,6 +51,11 @@ glm::mat4 Camera::GetViewMatrix() const
 	return glm::lookAt(_Position, _Position + _Forward, _Up);
 }
 
+glm::mat4 Camera::GetOrthoView() const
+{
+	return glm::lookAt(glm::vec3(0.0,0.0,0.0),glm::vec3(0.0,0.0,-1.0), _Up);
+}
+
 glm::vec3 Camera::GetPosition()
 {
 	return _Position;

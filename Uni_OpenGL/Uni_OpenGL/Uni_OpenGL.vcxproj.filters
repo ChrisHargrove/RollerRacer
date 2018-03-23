@@ -37,6 +37,21 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{6e109c2d-64cc-463d-8b7a-006f272853ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{18abe1ad-1336-4e4a-8279-6dfe5c36e449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Objects">
+      <UniqueIdentifier>{f4939191-77a5-4289-80a1-05249cc71d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Basic">
+      <UniqueIdentifier>{a56ba8ad-f5ed-4d14-b715-9997aa72b533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Lighting">
+      <UniqueIdentifier>{b7f9b6a0-910d-4f79-8c0a-404359843854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Special">
+      <UniqueIdentifier>{be69435e-4b8a-4bc1-a03d-34e7bfd8e28c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,20 +72,29 @@
     <ClCompile Include="ShaderManager.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Buffer.cpp">
       <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMap.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +113,6 @@
     <ClInclude Include="ShaderManager.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Buffer.h">
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
@@ -107,40 +128,61 @@
     <ClInclude Include="Axis.h">
       <Filter>Header Files\Geometry\Primitive</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SkyBox.h">
       <Filter>Header Files\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMap.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\basic.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\basic.frag">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders\Basic</Filter>
     </None>
-    <None Include="Shaders\phong.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\phong.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\texture_phong.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\texture_phong.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\betterLight.frag">
-      <Filter>Shaders</Filter>
+    <None Include="Shaders\basic.vert">
+      <Filter>Shaders\Basic</Filter>
     </None>
     <None Include="Shaders\betterLight.vert">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\betterLight.frag">
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\phong.frag">
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\phong.vert">
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\texture_phong.frag">
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\texture_phong.vert">
+      <Filter>Shaders\Lighting</Filter>
+    </None>
+    <None Include="Shaders\skybox.frag">
+      <Filter>Shaders\Special</Filter>
+    </None>
+    <None Include="Shaders\skybox.vert">
+      <Filter>Shaders\Special</Filter>
     </None>
   </ItemGroup>
 </Project>

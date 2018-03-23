@@ -18,6 +18,7 @@ Texture::Texture(std::string FileName, std::string textureName)
 
 Texture::~Texture()
 {
+    delete _Textures;
 }
 
 bool Texture::SetID(std::string textureName)
@@ -25,7 +26,7 @@ bool Texture::SetID(std::string textureName)
 	auto search = _Textures->find(textureName);
 	if (search != _Textures->end()) {
 		_ID = search->second;
-		return false;
+		return true;
 	}
 	else {
 		LogManager::Instance()->LogError("Texture does not exist: " + textureName);
@@ -36,6 +37,7 @@ bool Texture::SetID(std::string textureName)
 
 bool Texture::Load(std::string FileName, std::string textureName)
 {
+    LogManager::Instance()->LogWarning("Trying to load image " + FileName);
 	auto search = _Textures->find(textureName);
 	if (search == _Textures->end()) {
 		SDL_Surface* image;
@@ -82,7 +84,10 @@ bool Texture::Load(std::string FileName, std::string textureName)
 			LogManager::Instance()->LogInfo("Texture " + FileName + " Loaded...");
 
 			return true;
-		}    
+        }
+        else {
+            LogManager::Instance()->LogError("Texture " + FileName + " Failed...");
+        }
     }
 	else {
 		LogManager::Instance()->LogError("Texture Name already taken, " + FileName + " Not Loaded!");

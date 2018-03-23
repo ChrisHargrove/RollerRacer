@@ -10,7 +10,7 @@ class Texture
 public:
     Texture();
     Texture(std::string FileName, std::string textureName);
-    ~Texture();
+    virtual ~Texture();
 
     inline unsigned int GetID() { return _ID; }
     inline glm::vec2 GetSize() { return _Size; }

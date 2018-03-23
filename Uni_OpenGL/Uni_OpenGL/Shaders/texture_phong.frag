@@ -31,8 +31,8 @@ void main()
     vec3 ambient = light.ambient * texture(material.diffuse, TexCoords).rgb;
 
     //allows for correct lighting on rotated objects
-    mat3 normalMatrix = transpose(inverse(mat3(model)));
-    Normal = normalize(normalMatrix * Normal);
+    //mat3 normalMatrix = transpose(inverse(mat3(model)));
+    //Normal = normalize(normalMatrix * Normal);
   	
     // diffuse 
     vec3 norm = normalize(Normal);

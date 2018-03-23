@@ -195,3 +195,15 @@ void ScreenManager::CreateViewport(int X, int Y, int Width, int Height)
 {
 	glViewport(X, Y, Width, Height);
 }
+
+void ScreenManager::Set2D()
+{
+	glDisable(GL_DEPTH_TEST);
+	SetOrthographic(0.0f, 1000.0f);
+}
+
+void ScreenManager::Set3D(float FOV, float Zoom, float ZNear, float ZFar)
+{
+	glEnable(GL_DEPTH_TEST);
+	SetProjection(FOV, Zoom, ZNear, ZFar);
+}
