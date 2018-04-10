@@ -14,10 +14,10 @@ Model::~Model()
 {
 }
 
-void Model::Draw()
+void Model::Render()
 {
     for (int i = 0; i < (int)_Meshes.size(); i++) {
-        _Meshes[i].Draw();
+        _Meshes[i].Render();
     }
 }
 
@@ -51,6 +51,7 @@ Mesh Model::ProcessMesh(aiMesh * mesh, const aiScene * scene)
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<MeshTexture> textures;
+	float shininess, strength;
 
     for (int i = 0; i < (int)mesh->mNumVertices; i++) {
         Vertex vertex;
@@ -113,9 +114,16 @@ Mesh Model::ProcessMesh(aiMesh * mesh, const aiScene * scene)
         std::vector<MeshTexture> heightMaps = LoadMaterialTextures(material, 
             aiTextureType_AMBIENT, "texture_height");
         textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+
+		if (AI_SUCCESS != material->Get(AI_MATKEY_SHININESS, shininess)) {
+			LogManager::Instance()->LogWarning("Material Found Without Shininess Value");
+		}
     }
 
-    return Mesh(vertices, indices, textures, _Shader);
+	Mesh returnMesh(vertices, indices, textures, _Shader);
+	returnMesh.SetShininess(shininess);
+
+    return returnMesh;
 }
 
 std::vector<MeshTexture> Model::LoadMaterialTextures(aiMaterial * material, aiTextureType type, std::string typeName)

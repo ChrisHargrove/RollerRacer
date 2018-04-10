@@ -33,37 +33,37 @@ public:
 		delete zNeg;
 	}
 
-	void Draw()
+	void Render()
 	{
 		glm::mat4 model;
 		model = glm::translate(model, glm::vec3(_AxisLength / 2, 0.0, 0.0));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		xPos->Draw();
+		xPos->Render();
 
 		model = glm::mat4();
 		model = glm::translate(model, glm::vec3(-_AxisLength / 2, 0.0, 0.0));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		xNeg->Draw();
+		xNeg->Render();
 
 		model = glm::mat4();
 		model = glm::translate(model, glm::vec3(0.0, _AxisLength / 2, 0.0));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		yPos->Draw();
+		yPos->Render();
 
 		model = glm::mat4();
 		model = glm::translate(model, glm::vec3(0.0, -_AxisLength / 2, 0.0));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		yNeg->Draw();
+		yNeg->Render();
 
 		model = glm::mat4();
 		model = glm::translate(model, glm::vec3(0.0, 0.0, _AxisLength / 2));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		zPos->Draw();
+		zPos->Render();
 
 		model = glm::mat4();
 		model = glm::translate(model, glm::vec3(0.0, 0.0, -_AxisLength / 2));
 		ShaderManager::Instance()->GetShader(_Shader)->SetMat4("model", model);
-		zNeg->Draw();
+		zNeg->Render();
 	}
 
 private:

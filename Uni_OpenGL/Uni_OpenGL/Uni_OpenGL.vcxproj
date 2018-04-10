@@ -129,11 +129,13 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shaders\Shader.cpp" />
@@ -151,10 +153,12 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="PrimitiveShape.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderManager.h" />

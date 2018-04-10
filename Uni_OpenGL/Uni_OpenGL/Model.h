@@ -11,7 +11,7 @@ public:
     Model(std::string FileName, std::string shader);
     ~Model();
 
-    void Draw();
+    void Render();
 
 private:
     std::string _Shader;

@@ -50,7 +50,7 @@ struct SpotLight {
     vec3 specular;
 };
 
-#define NR_POINT_LIGHTS 4
+#define NR_POINT_LIGHTS 10
 
 uniform DirLight dirLight; 
 uniform PointLight pointLights[NR_POINT_LIGHTS]; 
@@ -58,6 +58,10 @@ uniform SpotLight spotLight;
 uniform Material material;
  
 uniform vec3 viewPos;
+uniform int hasDirLight = 0;
+uniform int hasSpotLight = 0;
+uniform int hasPointLight = 0;
+uniform int numPointLight = 0;
 uniform mat4 model;
 
 //function prototypes
@@ -78,20 +82,28 @@ void main()
     // at the end.
     //------------------------------------------------------
 
+
+	vec3 totalLight = vec3(0.0,0.0,0.0);
     //---------------------------
     // Phase 1: Directional Light
     //---------------------------
-    vec3 totalLight = CalculateDirectionalLight(dirLight, norm, viewDir);
+	if(hasDirLight > 0){
+		totalLight = totalLight + CalculateDirectionalLight(dirLight, norm, viewDir);
+	}
     //---------------------------
     // Phase 2: Point Lights
     //---------------------------
-    for(int i = 0; i < NR_POINT_LIGHTS; i++){
-        totalLight += CalculatePointLight(pointLights[i], norm, FragPos, viewDir);
-    }
+	if(hasPointLight > 0){
+		for(int i = 0; i < numPointLight; i++){
+			totalLight = totalLight + CalculatePointLight(pointLights[i], norm, FragPos, viewDir);
+		}
+	}
     //---------------------------
     // Phase 3: Spot Lights
     //---------------------------
-    totalLight += CalculateSpotLight(spotLight, norm, FragPos, viewDir);
+	if(hasSpotLight > 0){
+		totalLight += CalculateSpotLight(spotLight, norm, FragPos, viewDir);
+	}
 
     FragColor = vec4(totalLight, 1.0);
 

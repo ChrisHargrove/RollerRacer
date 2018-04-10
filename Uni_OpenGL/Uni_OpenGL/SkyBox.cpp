@@ -69,7 +69,7 @@ SkyBox::~SkyBox()
     _VertexBuffer.Destroy();
 }
 
-void SkyBox::Draw()
+void SkyBox::Render()
 {
     glDepthFunc(GL_LEQUAL);
 

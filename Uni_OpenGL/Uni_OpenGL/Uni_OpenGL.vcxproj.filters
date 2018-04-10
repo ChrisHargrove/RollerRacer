@@ -58,6 +58,12 @@
     <Filter Include="Header Files\States">
       <UniqueIdentifier>{7a936ccf-93be-49a0-a4b8-17ce87e25e12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Geometry\Terrain">
+      <UniqueIdentifier>{8b00cc81-8d23-4809-a3b8-7859a5d748d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Geometry\Terrain">
+      <UniqueIdentifier>{9d013a4a-bbba-4e3e-9eac-a4ac9a0a9080}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -109,6 +115,12 @@
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -180,6 +192,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

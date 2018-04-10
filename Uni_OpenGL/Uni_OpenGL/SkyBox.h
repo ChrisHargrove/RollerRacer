@@ -10,7 +10,7 @@ public:
 	SkyBox(std::string ShaderName, std::string FileName, std::string cubeMapName);
 	~SkyBox();
 
-    void Draw();
+    void Render();
 
 private:
     

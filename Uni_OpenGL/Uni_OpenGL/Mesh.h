@@ -21,13 +21,20 @@ struct MeshTexture {
     std::string _Path;
 };
 
+class Model;
+
 class Mesh
 {
 public:
 
     Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures, std::string shader);
 
-    void Draw();
+	friend class Model;
+
+    void Render();
+
+protected:
+	void SetShininess(float value);
 
 private:
     Buffer _VertexArray;
@@ -39,5 +46,6 @@ private:
     std::vector<MeshTexture> _Textures;
 
     std::string _Shader;
+	float _Shininess;
 };
 

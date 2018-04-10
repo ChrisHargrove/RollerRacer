@@ -1,5 +1,8 @@
 #include "LoadState.h"
 #include "ShaderManager.h"
+#include "StateManager.h"
+
+#include "PlayState.h"
 
 
 LoadState::LoadState() :
@@ -20,6 +23,12 @@ bool LoadState::Initialize()
     ShaderManager::Instance()->AddShader("betterLight", "betterLight");
 
 
+    if (!StateManager::Instance()->AddState("[STATE]Play", new PlayState())) {
+        return false;
+    }
+
+    
+
     return true;
 }
 
@@ -29,6 +38,8 @@ void LoadState::Input()
 
 void LoadState::Update(float delta)
 {
+    if (!StateManager::Instance()->PushState("[STATE]Play")) {
+    }
 }
 
 void LoadState::Render()

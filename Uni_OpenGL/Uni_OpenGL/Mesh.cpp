@@ -10,6 +10,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
     _Textures = textures;
 
     _Shader = shader;
+	_Shininess = 8;
 
     _VertexArray.Create(VAO);
     _VertexBuffer.Create(VBO);
@@ -29,7 +30,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
     _VertexArray.Unbind();
 }
 
-void Mesh::Draw()
+void Mesh::Render()
 {
     unsigned int diffuseNr = 1;
     unsigned int specularNr = 1;
@@ -51,6 +52,7 @@ void Mesh::Draw()
             number = std::to_string(heightNr++);
 
         ShaderManager::Instance()->GetShader(_Shader)->SetFloat(("material." + name + number).c_str(), (float)i);
+		ShaderManager::Instance()->GetShader(_Shader)->SetFloat("material.shininess", _Shininess);
         glBindTexture(GL_TEXTURE_2D, _Textures[i]._ID);
     }
 
@@ -59,4 +61,9 @@ void Mesh::Draw()
     _VertexArray.Unbind();
 
     glActiveTexture(GL_TEXTURE0);
+}
+
+void Mesh::SetShininess(float value)
+{
+	_Shininess = value;
 }

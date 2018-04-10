@@ -41,7 +41,7 @@ public:
 		_VertexBuffer.Destroy();
 	}
 
-	void Draw()
+	void Render()
 	{
 		ShaderManager::Instance()->GetShader(_Shader)->SetVec3("aColor", _Color);
 		_VertexArray.Bind();
