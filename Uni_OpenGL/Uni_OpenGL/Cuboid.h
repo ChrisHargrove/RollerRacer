@@ -71,7 +71,6 @@ public:
 
 		_DrawCount = 36;
 		_VertexArray.Unbind();
-
 	}
 
 	~Cuboid()
@@ -80,13 +79,25 @@ public:
 		_VertexBuffer.Destroy();
 	}
 
-	void Render()
+	void Render(std::string shader = "" )
 	{
-		ShaderManager::Instance()->GetShader(_Shader)->SetVec3("aColor", _Color);
+		if (shader == "") {
+			ShaderManager::Instance()->GetShader(_Shader)->SetVec3("aColor", _Color);
+		}
+		else {
+			ShaderManager::Instance()->GetShader(shader)->SetVec3("aColor", _Color);
+			_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aPos", 3, VT_FLOAT, 8 * sizeof(float));
+			_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aNormal", 3, VT_FLOAT, 8 * sizeof(float), 3 * sizeof(float));
+			_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aTexCoords", 2, VT_FLOAT, 8 * sizeof(float), 6 * sizeof(float));
+		}
 		_VertexArray.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		_VertexArray.Unbind();
 	}
+
+    void SetColor(glm::vec3 color) {
+        _Color = color;
+    }
 
 private:
 	glm::vec3 _Color;

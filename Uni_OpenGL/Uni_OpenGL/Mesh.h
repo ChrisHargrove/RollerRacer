@@ -6,7 +6,7 @@
 
 #include "Buffer.h"
 
-struct Vertex {
+struct ComplexVertex {
     glm::vec3 _Position;
     glm::vec3 _Normal;
     glm::vec2 _UV;
@@ -19,6 +19,9 @@ struct MeshTexture {
     unsigned int _ID;
     std::string _Type;
     std::string _Path;
+
+	bool _HasTexture;
+	glm::vec3 _Color;
 };
 
 class Model;
@@ -27,11 +30,11 @@ class Mesh
 {
 public:
 
-    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures, std::string shader);
+    Mesh(std::vector<ComplexVertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures, std::string shader);
 
 	friend class Model;
 
-    void Render();
+    void Render(std::string shader = "");
 
 protected:
 	void SetShininess(float value);
@@ -41,7 +44,7 @@ private:
     Buffer _VertexBuffer;
     Buffer _ElementBuffer;
 
-    std::vector<Vertex> _Vertices;
+    std::vector<ComplexVertex> _Vertices;
     std::vector<unsigned int> _Indices;
     std::vector<MeshTexture> _Textures;
 

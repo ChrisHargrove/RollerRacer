@@ -13,56 +13,101 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{40fa7b08-f13a-400d-bdfc-f6a32caab1e9}</UniqueIdentifier>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{a7306e6a-0c36-4206-b331-cb925fdce8f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Managers">
+    <Filter Include="Header Files\Engine\Managers">
       <UniqueIdentifier>{1fdb2fc9-4d9f-4cc3-a821-d9162d7ade2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Managers">
-      <UniqueIdentifier>{d6e7c733-7052-499d-b282-e9844a2ad427}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Geometry">
-      <UniqueIdentifier>{a80381a7-5fbb-4eaa-88c5-554010f5a91f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Geometry">
-      <UniqueIdentifier>{25544359-dd39-42e9-8336-e652dfbb8017}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Geometry\Primitive">
-      <UniqueIdentifier>{ee57e03c-cd4c-4101-9d68-8cffe6ed58ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Graphics">
+    <Filter Include="Header Files\Engine\Graphics">
       <UniqueIdentifier>{53d003fc-6ded-4da5-b651-c6fc36568cdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{6e109c2d-64cc-463d-8b7a-006f272853ec}</UniqueIdentifier>
+    <Filter Include="Header Files\Engine\Geometry">
+      <UniqueIdentifier>{a80381a7-5fbb-4eaa-88c5-554010f5a91f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game Objects">
-      <UniqueIdentifier>{18abe1ad-1336-4e4a-8279-6dfe5c36e449}</UniqueIdentifier>
+    <Filter Include="Header Files\Engine\Geometry\Primitive">
+      <UniqueIdentifier>{ee57e03c-cd4c-4101-9d68-8cffe6ed58ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game Objects">
+    <Filter Include="Header Files\Engine\Physics">
+      <UniqueIdentifier>{8b1c8465-14ef-47de-b836-b63ba35a5c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{1f65d7c5-9465-483b-a758-8b3df85d12e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Game Objects">
+      <UniqueIdentifier>{a04d78c2-86e6-460b-a49b-154a28b1a19f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Utility">
+      <UniqueIdentifier>{a983d0cb-3cfe-4f49-806c-dd19fc40b602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Game Objects">
       <UniqueIdentifier>{f4939191-77a5-4289-80a1-05249cc71d8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders\Basic">
-      <UniqueIdentifier>{a56ba8ad-f5ed-4d14-b715-9997aa72b533}</UniqueIdentifier>
+    <Filter Include="Header Files\Game\Game Objects\Physics Objects">
+      <UniqueIdentifier>{1b9ae4dc-28f6-4a3f-a026-1e77eeed7d6b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders\Lighting">
-      <UniqueIdentifier>{b7f9b6a0-910d-4f79-8c0a-404359843854}</UniqueIdentifier>
+    <Filter Include="Header Files\Game\Game Objects\Generic Objects">
+      <UniqueIdentifier>{31efef2d-6593-41dd-abca-6d3ca720abef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders\Special">
-      <UniqueIdentifier>{be69435e-4b8a-4bc1-a03d-34e7bfd8e28c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\States">
-      <UniqueIdentifier>{42c97f14-8111-4943-96bb-49eecb955d58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\States">
+    <Filter Include="Header Files\Game\States">
       <UniqueIdentifier>{7a936ccf-93be-49a0-a4b8-17ce87e25e12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Geometry\Terrain">
+    <Filter Include="Header Files\Game\Terrain">
+      <UniqueIdentifier>{9d013a4a-bbba-4e3e-9eac-a4ac9a0a9080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Shaders">
+      <UniqueIdentifier>{40fa7b08-f13a-400d-bdfc-f6a32caab1e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Shaders\Basic">
+      <UniqueIdentifier>{a56ba8ad-f5ed-4d14-b715-9997aa72b533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Shaders\Lighting">
+      <UniqueIdentifier>{b7f9b6a0-910d-4f79-8c0a-404359843854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Shaders\Special">
+      <UniqueIdentifier>{be69435e-4b8a-4bc1-a03d-34e7bfd8e28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{3e654d06-dae4-4d85-9fe6-46e46afcfc8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Managers">
+      <UniqueIdentifier>{d6e7c733-7052-499d-b282-e9844a2ad427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Geometry">
+      <UniqueIdentifier>{25544359-dd39-42e9-8336-e652dfbb8017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{761d21cd-32c9-40a0-a943-d3fa42e0d5e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics">
+      <UniqueIdentifier>{6e109c2d-64cc-463d-8b7a-006f272853ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{859aae86-b84c-459b-adfc-17d7dd198bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\States">
+      <UniqueIdentifier>{42c97f14-8111-4943-96bb-49eecb955d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Game Objects">
+      <UniqueIdentifier>{18abe1ad-1336-4e4a-8279-6dfe5c36e449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Game Objects\Generic Objects">
+      <UniqueIdentifier>{4a1692b7-42dd-4659-9e42-996596fd5ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Game Objects\Physics Objects">
+      <UniqueIdentifier>{9c535acc-811b-4f29-81ce-b5352f650474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Terrain">
       <UniqueIdentifier>{8b00cc81-8d23-4809-a3b8-7859a5d748d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Geometry\Terrain">
-      <UniqueIdentifier>{9d013a4a-bbba-4e3e-9eac-a4ac9a0a9080}</UniqueIdentifier>
+    <Filter Include="Source Files\Game\HUD">
+      <UniqueIdentifier>{1fa7b253-9cdb-410a-9f77-a01ced76b95a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\HUD">
+      <UniqueIdentifier>{37f6825e-4a39-47ab-b981-b395c05d0092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Utility">
+      <UniqueIdentifier>{bdaea236-bbd0-4e07-aec6-8590ff5314dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,167 +115,359 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shaders\Shader.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Header Files\Engine\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="LogManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="ScreenManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="ShaderManager.cpp">
-      <Filter>Source Files\Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Buffer.cpp">
-      <Filter>Source Files\Geometry</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="SkyBox.cpp">
-      <Filter>Source Files\Geometry</Filter>
+      <Filter>Source Files\Engine\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="CubeMap.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Engine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Game Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Game Objects</Filter>
+      <Filter>Source Files\Engine\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Geometry</Filter>
+      <Filter>Source Files\Engine\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
-      <Filter>Source Files\Managers</Filter>
+      <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
     <ClCompile Include="LoadState.cpp">
-      <Filter>Source Files\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\States</Filter>
     </ClCompile>
     <ClCompile Include="PlayState.cpp">
-      <Filter>Source Files\States</Filter>
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Game\Game Objects\Generic Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodyFromOBJ.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BVehicle.cpp">
+      <Filter>Source Files\Game\Game Objects\Physics Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files\Game\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Source Files\Engine\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BBox.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BModel.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="TrackGenerator.cpp">
+      <Filter>Source Files\Game\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BTriggerVolume.cpp">
+      <Filter>Source Files\Game\Game Objects\Physics Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Speedometer.cpp">
+      <Filter>Source Files\Game\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="CatmullRomSpline.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtil.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Game\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files\Engine\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelectState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="InstructionsState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="HighScoreState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="FileLoader.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="AddScoreState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsState.cpp">
+      <Filter>Source Files\Game\States</Filter>
+    </ClCompile>
+    <ClCompile Include="RadioButton.cpp">
+      <Filter>Source Files\Game\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowMapBuffer.cpp">
+      <Filter>Source Files\Game\Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shaders\Shader.h">
-      <Filter>Shaders</Filter>
+      <Filter>Header Files\Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Managers</Filter>
+      <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="LogManager.h">
-      <Filter>Header Files\Managers</Filter>
+      <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="ScreenManager.h">
-      <Filter>Header Files\Managers</Filter>
+      <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="ShaderManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="Buffer.h">
-      <Filter>Header Files\Geometry</Filter>
+      <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="PrimitiveShape.h">
-      <Filter>Header Files\Geometry\Primitive</Filter>
+      <Filter>Header Files\Engine\Geometry\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Header Files\Geometry\Primitive</Filter>
+      <Filter>Header Files\Engine\Geometry\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Cuboid.h">
-      <Filter>Header Files\Geometry\Primitive</Filter>
+      <Filter>Header Files\Engine\Geometry\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="Axis.h">
-      <Filter>Header Files\Geometry\Primitive</Filter>
+      <Filter>Header Files\Engine\Geometry\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="SkyBox.h">
-      <Filter>Header Files\Geometry</Filter>
+      <Filter>Header Files\Engine\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="CubeMap.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Engine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Header Files\Geometry</Filter>
+      <Filter>Header Files\Engine\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Game Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Game Objects</Filter>
+      <Filter>Header Files\Engine\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="StateManager.h">
-      <Filter>Header Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadState.h">
-      <Filter>Header Files\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="PlayState.h">
-      <Filter>Header Files\States</Filter>
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLMotionState.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLDebugDrawer.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyFromOBJ.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Game\Game Objects\Generic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BVehicle.h">
+      <Filter>Header Files\Game\Game Objects\Physics Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\Game\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Header Files\Engine\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="BGameObject.h">
+      <Filter>Header Files\Engine\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BBox.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="BModel.h">
+      <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PRNG.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackGenerator.h">
+      <Filter>Header Files\Game\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CatmullRomSpline.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BTriggerVolume.h">
+      <Filter>Header Files\Game\Game Objects\Physics Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Speedometer.h">
+      <Filter>Header Files\Game\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtil.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Game\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Engine\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelectState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="InstructionsState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLoader.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Structures.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AddScoreState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowMapBuffer.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsState.h">
+      <Filter>Header Files\Game\States</Filter>
+    </ClInclude>
+    <ClInclude Include="RadioButton.h">
+      <Filter>Header Files\Game\HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\basic.frag">
-      <Filter>Shaders\Basic</Filter>
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
     </None>
     <None Include="Shaders\basic.vert">
-      <Filter>Shaders\Basic</Filter>
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
     </None>
     <None Include="Shaders\betterLight.vert">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\betterLight.frag">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\phong.frag">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\phong.vert">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\texture_phong.frag">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\texture_phong.vert">
-      <Filter>Shaders\Lighting</Filter>
+      <Filter>Header Files\Engine\Shaders\Lighting</Filter>
     </None>
     <None Include="Shaders\skybox.frag">
-      <Filter>Shaders\Special</Filter>
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
     </None>
     <None Include="Shaders\skybox.vert">
-      <Filter>Shaders\Special</Filter>
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
+    </None>
+    <None Include="Shaders\terrain.frag">
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
+    </None>
+    <None Include="Shaders\terrain.vert">
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
+    </None>
+    <None Include="Shaders\debug.frag">
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
+    </None>
+    <None Include="Shaders\debug.vert">
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
+    </None>
+    <None Include="Shaders\texture.frag">
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
+    </None>
+    <None Include="Shaders\texture.vert">
+      <Filter>Header Files\Engine\Shaders\Basic</Filter>
+    </None>
+    <None Include="Shaders\shadow.frag">
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
+    </None>
+    <None Include="Shaders\shadow.vert">
+      <Filter>Header Files\Engine\Shaders\Special</Filter>
     </None>
   </ItemGroup>
 </Project>

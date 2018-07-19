@@ -12,19 +12,15 @@ public:
     Texture(std::string FileName, std::string textureName);
     virtual ~Texture();
 
-    inline unsigned int GetID() { return _ID; }
-    inline glm::vec2 GetSize() { return _Size; }
-
-	bool SetID(std::string textureName);
+    unsigned int GetID() { return _ID; }
+	void SetID(unsigned int id) { _ID = id; }
+    glm::vec2 GetSize() { return _Size; }
 
     bool Load(std::string FileName, std::string textureName);
-	bool Unload(std::string textureName);
-	void UnloadAll();
+	bool Unload();
 
 private:
     unsigned int _ID;
     glm::vec2 _Size;
-	
-	static std::map<std::string, unsigned int>* _Textures;
 };
 

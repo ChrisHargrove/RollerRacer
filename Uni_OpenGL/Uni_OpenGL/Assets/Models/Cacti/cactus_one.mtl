@@ -1,0 +1,50 @@
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cactus_green.jpg
+map_Ka cactus_green.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl lambert2SG
+illum 4
+Kd 0.84 0.84 0.84
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cactus_green.jpg
+map_Ka cactus_green.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl lambert3SG
+illum 4
+Kd 0.06 0.15 0.03
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cactus_green.jpg
+map_Ka cactus_green.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl lambert5SG
+illum 4
+Kd 0.84 0.84 0.84
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cactus_green.jpg
+map_Ka cactus_green.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl lambert7SG
+illum 4
+Kd 0.50 0.42 0.16
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cactus_green.jpg
+map_Ka cactus_green.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 90.00

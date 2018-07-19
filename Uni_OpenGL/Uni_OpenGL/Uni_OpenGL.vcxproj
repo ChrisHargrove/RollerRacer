@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{61FDB9D2-72CF-4A65-9ECB-218CC9B5C71F}</ProjectGuid>
     <RootNamespace>Uni_OpenGL</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,10 +77,11 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32.lib;assimp-vc140-mt.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32.lib;assimp-vc140-mt.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;opengl32.lib;freetype.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -100,12 +101,13 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32.lib;assimp-vc140-mt.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;opengl32.lib;freetype.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -123,62 +125,126 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddScoreState.cpp" />
+    <ClCompile Include="BBox.cpp" />
+    <ClCompile Include="BModel.cpp" />
+    <ClCompile Include="BTriggerVolume.cpp" />
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="BVehicle.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CatmullRomSpline.cpp" />
     <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="FileLoader.cpp" />
+    <ClCompile Include="OptionsState.cpp" />
+    <ClCompile Include="RadioButton.cpp" />
+    <ClCompile Include="HighScoreState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InstructionsState.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelSelectState.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtil.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="RigidBodyFromOBJ.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shaders\Shader.cpp" />
+    <ClCompile Include="ShadowMapBuffer.cpp" />
     <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="Speedometer.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="TrackGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddScoreState.h" />
     <ClInclude Include="Axis.h" />
+    <ClInclude Include="BBox.h" />
+    <ClInclude Include="BGameObject.h" />
+    <ClInclude Include="BModel.h" />
+    <ClInclude Include="BTriggerVolume.h" />
     <ClInclude Include="Buffer.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="BVehicle.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CatmullRomSpline.h" />
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="FileLoader.h" />
+    <ClInclude Include="OptionsState.h" />
+    <ClInclude Include="RadioButton.h" />
+    <ClInclude Include="ShadowMapBuffer.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="HighScoreState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InstructionsState.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelSelectState.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="LogManager.h" />
+    <ClInclude Include="MathUtil.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="OpenGLDebugDrawer.h" />
+    <ClInclude Include="OpenGLMotionState.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PrimitiveShape.h" />
+    <ClInclude Include="PRNG.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="RigidBodyFromOBJ.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Shaders\Shader.h" />
     <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="Speedometer.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="Structures.h" />
+    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Tools.h" />
+    <ClInclude Include="TrackGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\betterLight.frag" />
     <None Include="Shaders\betterLight.vert" />
+    <None Include="Shaders\debug.frag" />
+    <None Include="Shaders\debug.vert" />
     <None Include="Shaders\phong.frag" />
     <None Include="Shaders\phong.vert" />
     <None Include="Shaders\basic.frag" />
     <None Include="Shaders\basic.vert" />
+    <None Include="Shaders\shadow.frag" />
+    <None Include="Shaders\shadow.vert" />
     <None Include="Shaders\skybox.frag" />
     <None Include="Shaders\skybox.vert" />
+    <None Include="Shaders\terrain.frag" />
+    <None Include="Shaders\terrain.vert" />
+    <None Include="Shaders\texture.frag" />
+    <None Include="Shaders\texture.vert" />
     <None Include="Shaders\texture_phong.frag" />
     <None Include="Shaders\texture_phong.vert" />
   </ItemGroup>

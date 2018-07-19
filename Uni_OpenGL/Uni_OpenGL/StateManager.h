@@ -22,16 +22,6 @@ class StateManager
 {
 public:
     ////////////////////////////////////////////////////////////
-    /// Default Constructor
-    ////////////////////////////////////////////////////////////
-    StateManager();
-
-    ////////////////////////////////////////////////////////////
-    /// Default Destructor
-    ////////////////////////////////////////////////////////////
-    ~StateManager();
-
-    ////////////////////////////////////////////////////////////
     /// Runs input on the top state of the Active Stack.
     ////////////////////////////////////////////////////////////
     void Input();
@@ -71,12 +61,16 @@ public:
     ////////////////////////////////////////////////////////////
     bool PopState();
 
+	bool PopBackToState(std::string StateName);
+
     ////////////////////////////////////////////////////////////
     /// Adds a state to the state list.
     /// --StateName-- Name of the state, which is used as a key.
     /// --NewState-- Pointer to the new state being added.
     ////////////////////////////////////////////////////////////
     bool AddState(std::string StateName, State* NewState);
+
+	State* GetState(std::string stateName);
 
     ////////////////////////////////////////////////////////////
     /// Gets the only instance of the State Manager
@@ -92,5 +86,9 @@ private:
     static StateManager _Instance;
     std::stack<State*> _ActiveStack;            //Active Stack of states.
     std::map<std::string, State*> _StateList;   //List of all states.
+
+	StateManager();
+	~StateManager();
+	StateManager(const StateManager&) {}
 };
 

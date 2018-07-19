@@ -71,3 +71,8 @@ Shader* ShaderManager::GetShader(std::string Key)
 	}
     return nullptr;
 }
+
+std::map<std::string, Shader*>* ShaderManager::GetShaderList()
+{
+	return &_Shaders;
+}

@@ -14,15 +14,39 @@ Model::~Model()
 {
 }
 
-void Model::Render()
+void Model::Render(std::string shader)
 {
+	//go through each mesh and render it
     for (int i = 0; i < (int)_Meshes.size(); i++) {
-        _Meshes[i].Render();
+        _Meshes[i].Render(shader);
     }
+}
+
+std::vector<glm::vec3> Model::GetVertices()
+{
+    std::vector<glm::vec3> vertices;
+    for (auto m : _Meshes) {
+        for (auto v : m._Vertices) {
+            vertices.push_back(v._Position);
+        }
+    }
+    return vertices;
+}
+
+std::vector<unsigned int> Model::GetIndices()
+{
+    std::vector<unsigned int> indices;
+    for (auto m : _Meshes) {
+        for (auto i : m._Indices) {
+            indices.push_back(i);
+        }
+    }
+    return indices;
 }
 
 void Model::LoadModel(std::string FileName)
 {
+	//uses Assimp library to load all models
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(FileName, aiProcess_Triangulate | aiProcess_FlipUVs);
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
@@ -30,6 +54,7 @@ void Model::LoadModel(std::string FileName)
         return;
     }
 
+	//recursively loads all meshes for the model
     _Directory = FileName.substr(0, FileName.find_last_of('/'));
     ProcessNode(scene->mRootNode, scene);
 
@@ -37,6 +62,7 @@ void Model::LoadModel(std::string FileName)
 
 void Model::ProcessNode(aiNode * node, const aiScene * scene)
 {
+
     for (int i = 0; i < (int)node->mNumMeshes; i++) {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
         _Meshes.push_back(ProcessMesh(mesh, scene));
@@ -48,13 +74,13 @@ void Model::ProcessNode(aiNode * node, const aiScene * scene)
 
 Mesh Model::ProcessMesh(aiMesh * mesh, const aiScene * scene)
 {
-    std::vector<Vertex> vertices;
+    std::vector<ComplexVertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<MeshTexture> textures;
-	float shininess, strength;
+	float shininess;
 
     for (int i = 0; i < (int)mesh->mNumVertices; i++) {
-        Vertex vertex;
+        ComplexVertex vertex;
         glm::vec3 vector;
         vector.x = mesh->mVertices[i].x;
         vector.y = mesh->mVertices[i].y;
@@ -101,6 +127,7 @@ Mesh Model::ProcessMesh(aiMesh * mesh, const aiScene * scene)
 
     if (mesh->mMaterialIndex >= 0)
     {
+		//load all material data from mtl files
         aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
         std::vector<MeshTexture> diffuseMaps = LoadMaterialTextures(material,
             aiTextureType_DIFFUSE, "texture_diffuse");
@@ -132,7 +159,9 @@ std::vector<MeshTexture> Model::LoadMaterialTextures(aiMaterial * material, aiTe
     for (unsigned int i = 0; i < material->GetTextureCount(type); i++)
     {
         aiString str;
-        material->GetTexture(type, i, &str);
+        MeshTexture texture;
+		if (aiReturn_SUCCESS != material->GetTexture(type, i, &str)) {
+		}
         // check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
         bool skip = false;
         for (unsigned int j = 0; j < _Textures.size(); j++)
@@ -146,7 +175,6 @@ std::vector<MeshTexture> Model::LoadMaterialTextures(aiMaterial * material, aiTe
         }
         if (!skip)
         {   // if texture hasn't been loaded already, load it
-            MeshTexture texture;
 
             texture._ID = TextureFromFile(_Directory + "/" + std::string(str.C_Str()));
             texture._Type = typeName;

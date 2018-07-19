@@ -63,7 +63,7 @@ bool ScreenManager::Initialize(const char* Title, int Width, int Height, bool Co
 
 
 	//Create a Window
-	_Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, SDL_WINDOW_OPENGL);
+	_Window = SDL_CreateWindow(Title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Width, Height, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 	if (_Window == 0) {
 		std::string temp = SDL_GetError();
 		LogManager::Instance()->LogError("SDL_CreateWindow() Failed: " + temp);
@@ -89,6 +89,10 @@ bool ScreenManager::Initialize(const char* Title, int Width, int Height, bool Co
 		LogManager::Instance()->LogError("glewInit() Failed:" + temp);
 		return false;
 	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	return true;
 }
 

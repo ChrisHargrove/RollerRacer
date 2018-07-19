@@ -11,7 +11,7 @@ public:
 
 	virtual ~PrimitiveShape() {};
 
-	virtual void Render() = 0;
+	virtual void Render(std::string shader = "") = 0;
 
 protected:
 	int _DrawCount;

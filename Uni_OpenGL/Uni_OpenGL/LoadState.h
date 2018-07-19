@@ -19,6 +19,6 @@ public:
     virtual bool IsPaused() override;
 
 private:
-    bool _HasFinishedLoading;
+    bool _HasFinishedLoading = false;
 };
 

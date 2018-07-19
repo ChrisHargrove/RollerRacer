@@ -33,7 +33,9 @@ public:
 	void Bind();
 	void Unbind();
 	void Fill(int DataSize, const void* Data, DrawType Type);
+    void AddTo(int DataSize, const void* Data, DrawType type);
 	void Destroy();
+    void Reset();
 
 	void AddAttribPointer(unsigned int ShaderID, const std::string & name, int size, VariableType Type, int stride = 0, int offset = 0);
 
@@ -42,6 +44,8 @@ public:
 private:
 	unsigned int _ID;
 	BufferType _Type;
+
+    int _DataSize = 0;
 };
 
 #endif

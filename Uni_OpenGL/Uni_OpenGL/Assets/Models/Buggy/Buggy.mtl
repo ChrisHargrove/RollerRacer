@@ -1,0 +1,48 @@
+newmtl Buggy:Material02
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd karoserija4A.jpg
+map_Ka karoserija4A.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl Buggy:Material04
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd consola.jpg
+map_Ka consola.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl Buggy:Reflection_Lake
+illum 4
+Kd 0.03 0.03 0.03
+Ka 0.03 0.03 0.03
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.41 0.41 0.41
+Ns 24.00
+newmtl Buggy:karoserija1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd karoserija4.jpg
+map_Ka karoserija4.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 90.00
+newmtl Buggy:kotac
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd kotac.jpg
+map_Ka kotac.jpg
+Ni 1.50
+Ks 0.00 0.00 0.00
+Ns 90.00

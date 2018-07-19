@@ -5,20 +5,23 @@
 #include <vector>
 #include "PrimitiveShape.h"
 #include "ShaderManager.h"
+#include "Texture.h"
 
 class Sprite : public PrimitiveShape
 {
 public:
-	Sprite(float Width, float Height, int rows, int cols, std::string ShaderName, glm::vec3 Color = glm::vec3(1.0, 1.0, 1.0)) {
+	Sprite(glm::vec2 size, int rows, int cols, Texture* texture, std::string ShaderName, glm::vec3 Color = glm::vec3(1.0, 1.0, 1.0)) {
 		_Shader = ShaderName;
 		_ImageSize = glm::vec2(rows, cols);
-		_Size = glm::vec2(Width, Height);
+		_SpriteTexture = texture;
+		_Size = size;
+
 
 		float vertices[] = {
 			0.0f,0.0f,0.0f,						0.0f,  0.0f, -1.0f,
-			0.0f,1.0f * Height,0.0f,			0.0f,  0.0f, -1.0f,
-			1.0f * Width,1.0f * Height,0.0f,	0.0f,  0.0f, -1.0f,
-			1.0f * Width,0.0f,0.0f,				0.0f,  0.0f, -1.0f,
+			0.0f,1.0f * _Size.y,0.0f,			0.0f,  0.0f, -1.0f,
+			1.0f * _Size.x,1.0f * _Size.y,0.0f,	0.0f,  0.0f, -1.0f,
+			1.0f * _Size.x,0.0f,0.0f,				0.0f,  0.0f, -1.0f,
 		};
 
 		uvs.reserve(8);
@@ -60,10 +63,14 @@ public:
 		_VertexBuffer.Destroy();
 	}
 
-	void Render()
+	void Render(std::string shader = "")
 	{
-		ShaderManager::Instance()->GetShader(_Shader)->SetVec3("aColor", _Color);
+		ShaderManager::Instance()->GetShader(_Shader)->SetInt("textureImage", 0);
 		_VertexArray.Bind();
+		if (_SpriteTexture != nullptr) {
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, _SpriteTexture->GetID());
+		}
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		_VertexArray.Unbind();
 	}
@@ -81,10 +88,14 @@ public:
 		_UVBuffer.Fill(sizeof(float) * uvs.size(), &uvs[0], DYNAMIC);
 	}
 
+	glm::vec2 GetSize() { return _Size; }
+
 private:
 	glm::vec3 _Color;
 	Buffer	_IndexBuffer;
 	Buffer  _UVBuffer;
+
+	Texture* _SpriteTexture;
 
 	std::vector<float> uvs;
 	glm::vec2 _ImageSize;

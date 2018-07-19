@@ -8,6 +8,9 @@
 #include "InputManager.h"
 #include "ScreenManager.h"
 
+#include "Timer.h"
+
+
 
 Engine::Engine()
 {
@@ -52,6 +55,25 @@ void Engine::Render()
     ScreenManager::Instance()->Clear();
     StateManager::Instance()->Render();
     ScreenManager::Instance()->SwapBuffers();
+}
+
+int Engine::Run()
+{
+    Timer* _Timer = new Timer();
+    _Timer->Start();
+
+    while (!InputManager::Instance()->HasQuit()) {
+        Input();
+        Update(_Timer->GetDelta());
+        Render();
+    }
+    if (!Shutdown()) {
+        return 0;
+    }
+    return 1;
+
+    delete _Timer;
+    
 }
 
 bool Engine::Shutdown()

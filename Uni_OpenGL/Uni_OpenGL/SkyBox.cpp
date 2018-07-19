@@ -67,9 +67,10 @@ SkyBox::~SkyBox()
 {
     _VertexArray.Destroy();
     _VertexBuffer.Destroy();
+	delete _CubeMapTexture;
 }
 
-void SkyBox::Render()
+void SkyBox::Render(std::string shader)
 {
     glDepthFunc(GL_LEQUAL);
 

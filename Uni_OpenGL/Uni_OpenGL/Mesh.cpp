@@ -3,7 +3,7 @@
 
 
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures, std::string shader)
+Mesh::Mesh(std::vector<ComplexVertex> vertices, std::vector<unsigned int> indices, std::vector<MeshTexture> textures, std::string shader)
 {
     _Vertices = vertices;
     _Indices = indices;
@@ -17,21 +17,32 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
     _ElementBuffer.Create(EBO);
 
     _VertexArray.Bind();
-    _VertexBuffer.Fill(sizeof(Vertex) * _Vertices.size(), &_Vertices[0], STATIC);
+    _VertexBuffer.Fill(sizeof(ComplexVertex) * _Vertices.size(), &_Vertices[0], STATIC);
 
-    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aPos", 3, VT_FLOAT, sizeof(Vertex));
-    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aNormal", 3, VT_FLOAT, sizeof(Vertex), 3 * sizeof(float));
-    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aTexCoords", 2, VT_FLOAT, sizeof(Vertex), 6 * sizeof(float));
-    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aTangent", 3, VT_FLOAT, sizeof(Vertex), 8 * sizeof(float));
-    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aBiTangent", 3, VT_FLOAT, sizeof(Vertex), 11 * sizeof(float));
+    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aPos", 3, VT_FLOAT, sizeof(ComplexVertex));
+    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aNormal", 3, VT_FLOAT, sizeof(ComplexVertex), 3 * sizeof(float));
+    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aTexCoords", 2, VT_FLOAT, sizeof(ComplexVertex), 6 * sizeof(float));
+    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aTangent", 3, VT_FLOAT, sizeof(ComplexVertex), 8 * sizeof(float));
+    _VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(_Shader)->GetID(), "aBiTangent", 3, VT_FLOAT, sizeof(ComplexVertex), 11 * sizeof(float));
 
     _ElementBuffer.Fill(sizeof(unsigned int) * _Indices.size(), &_Indices[0], STATIC);
 
     _VertexArray.Unbind();
 }
 
-void Mesh::Render()
+void Mesh::Render(std::string shader)
 {
+	//was trying to implement shadows but ran out of time so this if block is not used.
+	if (shader != "") {
+		_VertexArray.Bind();
+		_VertexBuffer.Bind();
+		_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aPos", 3, VT_FLOAT, sizeof(ComplexVertex));
+		_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aNormal", 3, VT_FLOAT, sizeof(ComplexVertex), 3 * sizeof(float));
+		_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aTexCoords", 2, VT_FLOAT, sizeof(ComplexVertex), 6 * sizeof(float));
+		_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aTangent", 3, VT_FLOAT, sizeof(ComplexVertex), 8 * sizeof(float));
+		_VertexBuffer.AddAttribPointer(ShaderManager::Instance()->GetShader(shader)->GetID(), "aBiTangent", 3, VT_FLOAT, sizeof(ComplexVertex), 11 * sizeof(float));
+
+	}
     unsigned int diffuseNr = 1;
     unsigned int specularNr = 1;
     unsigned int normalNr = 1;
@@ -51,7 +62,7 @@ void Mesh::Render()
         else if (name == "texture_height")
             number = std::to_string(heightNr++);
 
-        ShaderManager::Instance()->GetShader(_Shader)->SetFloat(("material." + name + number).c_str(), (float)i);
+        ShaderManager::Instance()->GetShader(_Shader)->SetInt(("material." + name + number).c_str(), (int)i);
 		ShaderManager::Instance()->GetShader(_Shader)->SetFloat("material.shininess", _Shininess);
         glBindTexture(GL_TEXTURE_2D, _Textures[i]._ID);
     }

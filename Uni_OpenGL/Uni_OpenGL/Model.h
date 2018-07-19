@@ -4,6 +4,7 @@
 #include "ASSIMP\Importer.hpp"
 #include "ASSIMP\scene.h"
 #include "ASSIMP\postprocess.h"
+#include <GLM\glm.hpp>
 
 class Model
 {
@@ -11,7 +12,10 @@ public:
     Model(std::string FileName, std::string shader);
     ~Model();
 
-    void Render();
+    void Render(std::string shader = "");
+
+    std::vector<glm::vec3> GetVertices();
+    std::vector<unsigned int> GetIndices();
 
 private:
     std::string _Shader;

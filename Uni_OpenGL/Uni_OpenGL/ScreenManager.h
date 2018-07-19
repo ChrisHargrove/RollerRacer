@@ -25,16 +25,6 @@ class ScreenManager
 {
 public:
 	////////////////////////////////////////////////////////////
-	/// Default Constructor.
-	////////////////////////////////////////////////////////////
-	ScreenManager();
-
-	////////////////////////////////////////////////////////////
-	/// Default Destructor.
-	////////////////////////////////////////////////////////////
-	~ScreenManager();
-
-	////////////////////////////////////////////////////////////
 	/// Initialises the window, and sets starter variables.
 	///
 	/// --Title--  The Title to be displayed in Window bar.
@@ -93,6 +83,8 @@ public:
 	/// Gets a pointer to the SDL_GLContext.
 	////////////////////////////////////////////////////////////
 	SDL_GLContext* GetContext();
+
+	glm::vec2 GetSize() { return glm::vec2(_Width, _Height); }
 
 	////////////////////////////////////////////////////////////
 	/// Will Confine mouse pointer to the window, and hide cursor.
@@ -165,6 +157,10 @@ private:
 	float _Height;					// The screen width.
 
 	glm::mat4 _Projection;			// The projection matrix.
+
+	ScreenManager();
+	~ScreenManager();
+	ScreenManager(const ScreenManager&) {}
 
 };
 

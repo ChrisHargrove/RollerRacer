@@ -24,16 +24,6 @@ class ShaderManager
 {
 public:
 	////////////////////////////////////////////////////////////
-	/// Default Constructor.
-	////////////////////////////////////////////////////////////
-	ShaderManager();
-
-	////////////////////////////////////////////////////////////
-	/// Default Destructor.
-	////////////////////////////////////////////////////////////
-	~ShaderManager();
-
-	////////////////////////////////////////////////////////////
 	/// Adds a new shader to the manager.
 	/// --Key-- The key to store the shader to.
 	/// --FileName-- The file name of shader without path or extension.
@@ -52,6 +42,8 @@ public:
 	////////////////////////////////////////////////////////////
 	Shader* GetShader(std::string Key);
 
+	std::map<std::string, Shader*>* GetShaderList();
+
 	////////////////////////////////////////////////////////////
 	/// Provides access to the only instance of the shader
 	/// manager.
@@ -68,6 +60,10 @@ private:
 
 	std::string _CurrentShader;		// The currently used shader.
 	std::map<std::string, Shader*> _Shaders; // The Map of Shaders in the manager.
+
+	ShaderManager();
+	~ShaderManager();
+	ShaderManager(const ShaderManager&) {}
 };
 
 #endif

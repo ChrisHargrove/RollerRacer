@@ -1,49 +1,103 @@
 #include "Camera.h"
-
-#include <glm/gtc/matrix_transform.hpp>
-#include <SDL\SDL.h>
-
 #include "InputManager.h"
 #include "ScreenManager.h"
-#include "LogManager.h"
+#include <GLM\gtx\rotate_vector.hpp>
 
 
-Camera::Camera(glm::vec3 Position, float Yaw, float Pitch, float Roll)
+
+Camera::Camera(glm::vec3 position) :
+	GameObject(position),
+    _Target(nullptr)
 {
-	_Position = Position;
-	_WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
-	_Yaw = Yaw;
-	_Pitch = Pitch;
-	_Roll = Roll;
 	_Zoom = 0;
 	_Speed = 0.1f;
 	_ConstrainPitch = true;
 
-	UpdateCameraVectors();
+    if ( _Forward.y > 0.98f) {
+        _Forward.y = 0.98f;
+    }
+    if (_Forward.y < -0.98f) {
+        _Forward.y = -0.98f;
+    }
+
 	ScreenManager::Instance()->GrabMouse();
-	LogManager::Instance()->LogDebug("Creating Camera at: X:" + std::to_string(_Position.x) + " Y:" + std::to_string(_Position.y) + " Z:" + std::to_string(_Position.z) + " ...");
+	InputManager::Instance()->GrabMouse();
 }
 
-Camera::Camera(float PosX, float PosY, float PosZ, float Yaw, float Pitch, float Roll)
-{
-	_Position = glm::vec3(PosX, PosY, PosZ);
-	_WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
-	_Yaw = Yaw;
-	_Pitch = Pitch;
-	_Roll = Roll;
-	_Zoom = 0;
-	_Speed = 0.1f;
-	_ConstrainPitch = true;
-
-	UpdateCameraVectors();
-	ScreenManager::Instance()->GrabMouse();
-	LogManager::Instance()->LogDebug("Creating Camera at: X:" + std::to_string(_Position.x) + " Y:" + std::to_string(_Position.y) + " Z:" + std::to_string(_Position.z) + " ...");
-}
 
 Camera::~Camera()
 {
-	ScreenManager::Instance()->ReleaseMouse();
-	LogManager::Instance()->LogDebug("Destroying Camera...");
+}
+
+void Camera::Input()
+{
+	if (InputManager::Instance()->IsKeyHeld(SDLK_w)) {
+		_Position += _Forward * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_a)) {
+		_Position -= _Right * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_s)) {
+		_Position -= _Forward * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_d)) {
+		_Position += _Right * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_LSHIFT)) {
+		_Position += _Up * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_LCTRL)) {
+		_Position -= _Up * _Speed * 10.0f;
+	}
+	if (InputManager::Instance()->IsKeyHeld(SDLK_LALT)) {
+		InputManager::Instance()->ReleaseMouse();
+	}
+	else if (InputManager::Instance()->IsKeyReleased(SDLK_LALT)) {
+		InputManager::Instance()->GrabMouse();
+	}
+
+	if (SDL_GetRelativeMouseMode() == SDL_TRUE) {
+		if (InputManager::Instance()->HasMouseMoved()) {
+			_Forward = glm::rotate(_Forward, -(float)InputManager::Instance()->GetMouseMove().xRel * _Speed * 0.1f, _Up);
+			_Right = glm::rotate(_Right, -(float)InputManager::Instance()->GetMouseMove().xRel * _Speed * 0.1f, _Up);
+
+			float angle = -(float)InputManager::Instance()->GetMouseMove().yRel * _Speed * 0.1f;
+			if (_ConstrainPitch) {
+				if (angle > 0 && _Forward.y < 0.98f) {
+					_Forward = glm::rotate(_Forward, angle, _Right);
+				}
+				if(angle < 0 && _Forward.y > -0.98f){
+					_Forward = glm::rotate(_Forward, angle, _Right);
+				}
+			}
+			else{
+				_Forward = glm::rotate(_Forward, -(float)InputManager::Instance()->GetMouseMove().yRel * _Speed * 0.1f, _Right);
+			}
+		}
+		if (InputManager::Instance()->HasScrolled()) {
+			if (_Zoom >= 1.0f && _Zoom <= 45.0f)
+				_Zoom += (float)InputManager::Instance()->GetYScroll();
+			if (_Zoom <= 1.0f)
+				_Zoom = 1.0f;
+			if (_Zoom >= 45.0f)
+				_Zoom = 45.0f;
+		}
+	}
+}
+
+void Camera::Update()
+{
+    if (_Target != nullptr) {
+		//rotate the camera so that it always faces the target.
+		_Forward = _Target->GetRotationQuaternion() * -DEFAULT_FORWARD;
+		//keep the camera near the target.
+		_Position = _Target->GetPosition() - (_Forward * 7.0f);
+		_Position.y += 3.0f;
+    }
+}
+
+void Camera::Render()
+{
 }
 
 glm::mat4 Camera::GetViewMatrix() const
@@ -53,30 +107,7 @@ glm::mat4 Camera::GetViewMatrix() const
 
 glm::mat4 Camera::GetOrthoView() const
 {
-	return glm::lookAt(glm::vec3(0.0,0.0,0.0),glm::vec3(0.0,0.0,-1.0), _Up);
-}
-
-glm::vec3 Camera::GetPosition()
-{
-	return _Position;
-}
-
-glm::vec3 Camera::GetDirection()
-{
-    return _Forward;
-}
-
-void Camera::Update()
-{
-	ProcessKeyEvents();
-	ProcessMouseEvents();
-
-	UpdateCameraVectors();
-}
-
-void Camera::TogglePitchConstraint()
-{
-	_ConstrainPitch = !_ConstrainPitch;
+	return glm::lookAt(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, -1.0), _Up);
 }
 
 float Camera::GetZoom() const
@@ -84,69 +115,12 @@ float Camera::GetZoom() const
 	return _Zoom;
 }
 
-void Camera::UpdateCameraVectors()
+void Camera::TogglePitchConstraint()
 {
-	glm::vec3 front;
-	front.x = cos(glm::radians(_Yaw)) * cos(glm::radians(_Pitch));
-	front.y = sin(glm::radians(_Pitch));
-	front.z = sin(glm::radians(_Yaw)) * cos(glm::radians(_Pitch));
-	_Forward = glm::normalize(front);
-	// Also re-calculate the Right and Up vector
-	_Right = glm::normalize(glm::cross(_Forward, _WorldUp));  
-	// Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-	_Up = glm::vec3(0.0, 1.0, 0.0);//glm::normalize(glm::cross(_Right, _Forward));
+	_ConstrainPitch = !_ConstrainPitch;
 }
 
-void Camera::ProcessKeyEvents()
+void Camera::SetTarget(BGameObject * target)
 {
-	if (InputManager::Instance()->IsKeyHeld(SDLK_w)) {
-		_Position += _Forward * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_a)) {
-		_Position -= _Right * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_s)) {
-		_Position -= _Forward * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_d)) {
-		_Position += _Right * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_LSHIFT)) {
-		_Position += _Up * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_LCTRL)) {
-		_Position -= _Up * _Speed;
-	}
-	if (InputManager::Instance()->IsKeyHeld(SDLK_LALT)) {
-		InputManager::Instance()->ReleaseMouse();
-	}
-	else if(InputManager::Instance()->IsKeyReleased(SDLK_LALT)){
-		InputManager::Instance()->GrabMouse();
-	}
-	
-}
-
-void Camera::ProcessMouseEvents()
-{
-	if (SDL_GetRelativeMouseMode() == SDL_TRUE) {
-		if (InputManager::Instance()->HasMouseMoved()) {
-			_Yaw = glm::mod((float)(_Yaw + InputManager::Instance()->GetMouseMove().xRel), 360.0f);
-			_Pitch -= (float)InputManager::Instance()->GetMouseMove().yRel;
-		}
-		if (_ConstrainPitch)
-		{
-			if (_Pitch > 89.0f)
-				_Pitch = 89.0f;
-			if (_Pitch < -89.0f)
-				_Pitch = -89.0f;
-		}
-		if (InputManager::Instance()->HasScrolled()) {
-			if (_Zoom >= 1.0f && _Zoom <= 45.0f)
-				_Zoom += (float)InputManager::Instance()->GetYScroll();;
-			if (_Zoom <= 1.0f)
-				_Zoom = 1.0f;
-			if (_Zoom >= 45.0f)
-				_Zoom = 45.0f;
-		}
-	}
+    _Target = target;
 }

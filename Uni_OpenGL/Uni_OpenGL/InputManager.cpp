@@ -152,7 +152,7 @@ double InputManager::GetYScroll()
 ////////////////////////////////////////////////////////////
 bool InputManager::HasQuit()
 {
-    if (IsKeyPressed(SDLK_ESCAPE) || CheckForWinEvent(SDL_QUIT)) {
+    if (CheckForWinEvent(SDL_QUIT)) {
         return true;
     }
     return false;
@@ -193,6 +193,16 @@ void InputManager::ReleaseMouse()
 		ScreenManager::Instance()->ReleaseMouse();
 		_CapturedMouse = false;
 	}
+}
+
+void InputManager::RequestQuit()
+{
+	AddWindowEvent(0, SDL_QUIT, 0, 0);
+}
+
+void InputManager::ResetMouseEvents()
+{
+	MouseButtonEvents.clear();
 }
 
 ////////////////////////////////////////////////////////////

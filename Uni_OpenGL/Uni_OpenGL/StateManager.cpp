@@ -12,7 +12,12 @@ StateManager StateManager::_Instance;
 StateManager::StateManager(){}
 
 ////////////////////////////////////////////////////////////
-StateManager::~StateManager(){}
+StateManager::~StateManager()
+{
+	for (auto s : _StateList) {
+		delete s.second;
+	}
+}
 
 ////////////////////////////////////////////////////////////
 void StateManager::Input()
@@ -135,6 +140,7 @@ bool StateManager::PopState()
         LogManager::Instance()->LogError("Shutdown during Pop Failed! StateManager.cpp - Line 135");
         return false;
     }
+	_ActiveStack.pop();
     if (!_ActiveStack.empty()) {
         if (!_ActiveStack.top()->IsPaused()) {
             LogManager::Instance()->LogWarning("Previous State Wasn't Paused! StateManager.cpp - Line 140");
@@ -146,13 +152,35 @@ bool StateManager::PopState()
     return true;
 }
 
+bool StateManager::PopBackToState(std::string StateName)
+{
+	auto search = _StateList.find(StateName);
+	if (search == _StateList.end()) {
+		LogManager::Instance()->LogError(StateName + " Does Not Exist! StateManager.cpp - Line 153");
+		return false;
+	}
+	while (_ActiveStack.top() != _StateList.at(StateName)) {
+		PopState();
+	}
+	return true;
+}
+
 bool StateManager::AddState(std::string StateName, State * NewState)
 {
     auto search = _StateList.find(StateName);
     if (search != _StateList.end()) {
-        LogManager::Instance()->LogError(StateName + " Already Exists! StateManager.cpp - Line 153");
+        LogManager::Instance()->LogError(StateName + " Already Exists! StateManager.cpp - Line 166");
         return false;
     }
     _StateList.emplace(std::pair<std::string, State*>(StateName, NewState));
     return true;
+}
+
+State * StateManager::GetState(std::string stateName)
+{
+	auto search = _StateList.find(stateName);
+	if (search != _StateList.end()) {
+		return _StateList.at(stateName);
+	}
+	return nullptr;
 }
